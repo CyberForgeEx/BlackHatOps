@@ -24,6 +24,7 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrev, LPSTR lpCmdLine, int 
     //Cmdline - UNICODE string act as an argument in the program.
     //CmdShow - A flag to represent minimized or maximized in the function.
 
+<<<<<<< HEAD
     //Let's Program to make program execution invisible to the target while execution.
     HWND stealth;
     AllocConsole();//Allocate new console to the calling process.
@@ -35,3 +36,6 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrev, LPSTR lpCmdLine, int 
     // 2nd arg - is 0 - Hiding the current window and activate another window.
     ShowWindow(stealth, 0);
 }
+=======
+int main();
+>>>>>>> 1882cb7300cb2707dfcf88b75ede0094ee519004
