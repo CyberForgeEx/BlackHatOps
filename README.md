@@ -1,6 +1,6 @@
         #Proram Implementation - Using C.
 
-    Objective of the program - Act Like Malware in the target machine. 
+    Objective of the program - Act Like Malware in the target machine. (Target : Windows)
 
 1 - Create a connection with server
 2 - Create a Shell function
