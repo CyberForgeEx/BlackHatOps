@@ -14,3 +14,4 @@
 #include <windowsx.h> //Allows to do extra macro functions to make windows program easier.
 
 
+int main();
