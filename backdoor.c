@@ -82,6 +82,7 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrev, LPSTR lpCmdLine, int 
     ServAddr.sin_addr.s_addr = inet_addr(ServIP);
     //define port by converting integer to port
     ServAddr.sin_port = htons(ServPort);
+    //Ok.
     
 
 }
