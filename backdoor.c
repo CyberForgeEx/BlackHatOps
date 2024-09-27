@@ -69,4 +69,19 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrev, LPSTR lpCmdLine, int 
     //0 is we not decline anything after connection establishment.
     sock = socket(AF_INET, SOCK_STREAM, 0);
 
+    //clear all struct varible in zeros using memset function.
+    //memory location of the variable.
+    //Make all the contents to zero to ServAddr.
+    //Fill the memory occupied by the ServAddr structure with zeros, for the entire size of the structure.
+    // which helps prevent potential issues caused by uninitialized data.
+    memset(&ServAddr, 0, sizeof(ServAddr));
+
+    //IPv4 Connection.
+    ServAddr.sin_family = AF_INET;
+    //Create the actual IP of our server by converting string to  IP foramy
+    ServAddr.sin_addr.s_addr = inet_addr(ServIP);
+    //define port by converting integer to port
+    ServAddr.sin_port = htons(ServPort);
+    
+
 }
