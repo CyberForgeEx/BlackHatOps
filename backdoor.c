@@ -14,9 +14,9 @@
 #include <windowsx.h> //Allows to do extra macro functions to make windows program easier.
 
 //Let's Start the main function
-// This function is returning integer that why we specify int int the function.
-//Reason to specify 'APIENTRY' Para is every windows program consist of an entry point.
-//And it's also create API access to the program.
+// This function is returning integer that why we specify in int the function.
+//Reason to specify 'APIENTRY' Parameter is every windows program consist of an entry point.
+//And it's also create API access to the main funtion of the program.
 int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrev, LPSTR lpCmdLine, int nCmdShow)
 {
     //'HINSTANCE' - Used to handle an instance or a module(Executable) that was loaded in the memory.
