@@ -1,7 +1,6 @@
 **Program Implementation - Using C.**
 
-_Objective of the program - Act Like Malware in the target machine. (Target : Windows)
-_
+Objective of the program - Genuine backdoor implementation in the target machine. (Target : Windows)
 
 1 - Create a connection with server (Socket Program)
 
@@ -13,5 +12,5 @@ _
 
 5 - Navigating through different directories. (Directory Transversal)
 
-6 - Implementing a key logger in the backdoor. (Record keystrokes).
+6 - Implementing a key logger in the backdoor. (Record keystrokes). => Additional Concept.
 
