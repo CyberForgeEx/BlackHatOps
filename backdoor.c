@@ -74,7 +74,6 @@ void shell()
           //The process is want to read and execute buffer and storing the output in the container variable fits to 1024 bytes.
           //Some time the reponse is larger than 1024 bytes which will store to total reponse varible which 17 MB.
           //Concatinating same output of the container to total_response if output get larger.
-
           strcat(total_reponse, container);
         } 
         //Need to send the total response to the server.
