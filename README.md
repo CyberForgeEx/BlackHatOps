@@ -1,6 +1,6 @@
-# **Backdoor Program Implementation - Using C.**
+# **(BlackHatOps) Offensive Operations Provider - Using C.**
 
-###### Objective of the program - Genuine backdoor implementation in the target machine. (Target : Windows)
+###### Objective of the program - Offensive connection implementation in the target machine. (Target : Windows)
 
 - Create a connection with server (Socket Program)
 
