@@ -55,8 +55,8 @@ void shell()
 
 
       //Compare the buffer with different commands.
-      //if q represent quit the program implment it == strcmp.
-      if (strcmp("q", buffer) == 0)
+      //if q represent quit the program implment it == strncmp compare string with it byte values.
+      if (strncmp("q", buffer, 1) == 0)
       {
         closesocket(sock);//close socket
         WSACleanup();//clean socket object

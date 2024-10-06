@@ -83,7 +83,7 @@ int main()
 
         //Let's open a command input pallette to enter the command as a argument for the exploited system.
         //Want to add a IP address of targeted system into it.
-        printf("Exploited ~ BY BHO ~ $: %s ", inet_ntoa(client_address.sin_addr));
+        printf("Exploited ~ BY BHO ~ %s ~ $:  ", inet_ntoa(client_address.sin_addr));
 
         //Now need to input a command and  want to store it.
         //fgets function store it in a buffer.
