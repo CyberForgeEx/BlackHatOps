@@ -83,8 +83,7 @@ int bootRun()
 //The below function make slicing the command provided by the user as cd 'cut' directory.
 //Slicing the string `cd `
 //String manipulation allows us cut a string below.
-char *
-str_cut(char str[], int slice_from, int slice_to)
+char *str_cut(char str[], int slice_from, int slice_to)
 {
     if(str[0] == '\0')
     {
