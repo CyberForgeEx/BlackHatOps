@@ -5,7 +5,7 @@ Server Side Workflow using following functions.(sys/socket.h) Program compilatio
 # Socket() Function : Which is used to craete a socket object with TCP Stream for communication.
 # Bind() Function : Which is used to bind the host to particular IP and Port. Before declaring the bind fucntion have to declare a structure.
 # Listen() Fucntion : Which is used to listen the incoming connection using IP/Port.
-# Accept() Function : Which is used to accept the connection tha;t meet the requirements.
+# Accept() Function : Which is used to accept the connection that meet the requirements.
 # Send() and Recv() : Which used to send and receive the data streams between client and the server.
 
 Client Side Workflow using following function. (winsock2.h) Progarm compilation occurs in Windows Env.
