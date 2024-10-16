@@ -1,0 +1,2 @@
+All works coorectly but windows defender found the compiled version of the program as malicious and it not allowed to execute in the client environment.
+

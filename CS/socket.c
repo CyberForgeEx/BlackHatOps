@@ -30,14 +30,14 @@ int main()
     //Specify the information for the specified structure above.
     server_addr.sin_family = AF_INET; //Declaring Type
     server_addr.sin_port = htons(4445); //Decalring port
-    server_addr.sin_addr.s_addr = inet_addr("10.0.0.238"); //Declaring host address
+    server_addr.sin_addr.s_addr = inet_addr("192.168.1.52"); //Declaring host address
 
     //Now will move to the bind function.
     //bind function take 3 arguments
     //server socket that we craeted.
     //map the pointer to the structure that we declared
     //size of the structure.
-    bind(server_socket, (struct server_addr *) &server_addr, sizeof(server_addr)); //Bind the server.
+    bind(server_socket, (struct sockaddr *) &server_addr, sizeof(server_addr)); //Bind the server.
 
     //Now listen for the connection
     //listen function take 2 arguments > socket that we created and the number of connection
