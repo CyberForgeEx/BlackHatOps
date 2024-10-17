@@ -1,0 +1,8 @@
+
+All works coorectly but windows defender found the compiled version of the program as malicious and it not allowed to execute in the client environment.
+
+Compile the socket program as mentioned below
+`gcc [program] -o [executable_name] -Wno-implicit`
+
+Compile the client_soc program as mentioned below
+`i686-w64-mingw32-gcc client_soc.c -o client.exe -lws2_32`
