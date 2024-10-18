@@ -5,4 +5,11 @@ Compile the socket program as mentioned below
 `gcc [program] -o [executable_name] -Wno-implicit`
 
 Compile the client_soc program as mentioned below
-`i686-w64-mingw32-gcc client_soc.c -o client.exe -lws2_32`
+`x86_64-w64-mingw32-gcc client_soc.c -o client.exe -lws2_32`
+
+Reverse Shell works perfecctly while assining the correct IP and target port of attacker machine.
+
+Lesson > gcc also create a executable for windows while specifying the correct and linked libraries.
+        specify `-w` option while compiling the program to remove potencial warning messages.
+        defender not detecting while testing the reverse shell.
+
