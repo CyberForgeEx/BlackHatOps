@@ -1,5 +1,5 @@
 
-All works coorectly but windows defender found the compiled version of the program as malicious and it not allowed to execute in the client environment.
+1. All works coorectly but windows defender found the compiled version of the program as malicious and it not allowed to execute in the client environment.
 
 Compile the socket program as mentioned below
 `gcc [program] -o [executable_name] -Wno-implicit`
@@ -7,9 +7,14 @@ Compile the socket program as mentioned below
 Compile the client_soc program as mentioned below
 `x86_64-w64-mingw32-gcc client_soc.c -o client.exe -lws2_32`
 
-Reverse Shell works perfecctly while assining the correct IP and target port of attacker machine.
+2. Reverse Shell works perfectly while assining the correct IP and target port of attacker machine.
 
 Lesson > gcc also create a executable for windows while specifying the correct and linked libraries.
         specify `-w` option while compiling the program to remove potencial warning messages.
         defender not detecting while testing the reverse shell.
 
+
+3. Before program understand the main concepts of function that we are using while shell code execution.
+ VirtualAlloc() - Used for allocating memory in the process.
+ RtlMoveMemory() - Copies a block of memory to a destination memory (Will be use to move the shellcode to allocated memory buffer.)
+ CreateThread() - Execute a certain piece of the code.(will be used to create a thread in the program to execute the shell code.)
