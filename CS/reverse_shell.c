@@ -20,7 +20,7 @@ int main()
     PROCESS_INFORMATION pi;//Infrastructure to process creation.
     char buffer[1024];
     int connect;
-    char ip_addr[] = "192.168.1.1";
+    char ip_addr[] = "192.168.1.52";
     int port = 8888;
 
     //Implement the WSA startup function.

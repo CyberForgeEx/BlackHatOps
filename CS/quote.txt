@@ -18,3 +18,6 @@ Lesson > gcc also create a executable for windows while specifying the correct a
  VirtualAlloc() - Used for allocating memory in the process.
  RtlMoveMemory() - Copies a block of memory to a destination memory (Will be use to move the shellcode to allocated memory buffer.)
  CreateThread() - Execute a certain piece of the code.(will be used to create a thread in the program to execute the shell code.)
+
+        After compiled the shellcode execution the executable can be easily detectable by windows defender.
+        Turn off the windows security and try it out.
