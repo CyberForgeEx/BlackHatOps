@@ -21,3 +21,22 @@ Lesson > gcc also create a executable for windows while specifying the correct a
 
         After compiled the shellcode execution the executable can be easily detectable by windows defender.
         Turn off the windows security and try it out.
+
+        Let's Debug the shellcode program and analze the working principles.(x64dbg)
+
+
+4. Before program understand the most used function principles in RPI(Remote process injection.)
+RPI - Basically injecting the dll or shellcode in a remote process instead of injecting it to a local process.
+        OpenProcess() - Retrive a handle to a remote process.
+        VirtualAllocEx() - allocating the memory in the remote process.
+        WriteProcessMemory() - cpoies the buffer from from source to destination.
+        CreateRemoteThred() - Create a thread in a remote process to execute the shellcode.
+
+        Lesson - process reverse shell injection is very impactful. but windows defender easily find it.
+
+ 
+ 5.
+ if Sedebugpriviledge enabled - Allows a process to inspect and adjust the memory of the other process.
+
+
+        

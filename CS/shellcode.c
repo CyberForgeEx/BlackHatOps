@@ -36,6 +36,9 @@ int main()
     //Now will create pointer to store the shellcode in the memory (Allocate  Memory). 
     void *exec_mem;
 
+    //Now will print the memory address of the shellcode to debug the program easily
+    printf("ShellCode Variable Address : 0x%p\n", shellcode);
+
     //Now will call virtual alloc function.
     //1st arg - want to specify the memory address of the buffer.
     //2nd arg - size of shellcode.
@@ -43,6 +46,12 @@ int main()
     //4th arg - Protection type.> for setting priviledges to do.
     exec_mem = VirtualAlloc(NULL, shellcode_size, MEM_COMMIT | MEM_RESERVE, PAGE_EXECUTE_READWRITE); // Allcaate memory in the specific region.
 
+
+    //Now will print the memory address of the exec_mem variable to debug the program easily.
+    printf("Memory address of exec_mem region : 0x%p\n", exec_mem);
+
+    //Can be able set the breakpoint to the program while the excution happens using getchar function.
+    getchar();
     //Now let's code Rtlmovememory function > to move the memory to other locaation.
     //Specify Destination
     //Specify the Source
