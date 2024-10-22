@@ -16,4 +16,4 @@
 
 - Command to execute the server > "gcc [server program] -o <executable name>"
 
-- Command to execute the backdoor > "i686-w64-mingw32-gcc -o <executable name> [progarm Name]  -lwsock32 -lwininet"  
+- Command to execute the backdoor > "mingw64-gcc -w [backdoor program] -o <executable name> -lwsock32 -lwininet"  
