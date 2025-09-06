@@ -41,6 +41,4 @@ The tools and programs in this repository are strictly for **educational and res
 
 
 ## Acknowledgments
-
-- Thanks to the open-source community for providing valuable resources and inspiration.
 - Built with a focus on advancing cybersecurity education.
