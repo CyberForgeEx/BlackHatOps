@@ -1,4 +1,4 @@
-# BlackHatOps
+# BlackHatOps - BlackHat Operations (Offensive Security Operations)
 
 A collection of C programs designed for educational and research purposes in offensive security. This repository includes tools for working with sockets, creating reverse shells, executing shellcode, and performing process injection.
 
