@@ -42,3 +42,8 @@ The tools and programs in this repository are strictly for **educational and res
 
 ## Acknowledgments
 - Built with a focus on advancing cybersecurity education.
+
+## Biggest Update in Progress 
+
+I'm currently working on a major overhaul to implementation across all core components. This update focuses on significantly improving entire codebase.
+This is a critical step to ensure the project remains at the forefront of offensive security research.
